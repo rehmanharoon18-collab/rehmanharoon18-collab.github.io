@@ -17,6 +17,7 @@ table{width:100%;border-collapse:collapse;margin-top:10px}
 td,th{border:1px solid #ddd;padding:8px;text-align:left;font-size:14px}
 th{background:#0077b6;color:#fff}
 .cat{background:#e0f2ff;font-weight:bold}
+#search{width:100%;padding:12px;font-size:16px;border:2px solid #0077b6;border-radius:10px;box-sizing:border-box}
 </style>
 </head>
 <body>
@@ -35,7 +36,9 @@ th{background:#0077b6;color:#fff}
 </div>
 <div class="card">
 <h3>💰 Price List:</h3>
-<table>
+<p>🔍 Test Dhoondhen:</p>
+<input type="text" id="search" onkeyup="mySearch()" placeholder="Yahan Test Ka Naam Likhen... Jaise Sugar, Hepatitis">
+<table id="myTable">
 <tr><th>Test Name</th><th>Price (Rs)</th></tr>
 <tr><td colspan="2" class="cat">CLINICAL CHEMISTRY</td></tr>
 <tr><td>ALAT (GPT)</td><td>250</td></tr>
@@ -96,5 +99,24 @@ th{background:#0077b6;color:#fff}
 <a class="blue" href="tel:03439011466">Call Karen</a>
 <a class="red" href="https://maps.google.com/?q=Govt+Boys+High+School+Dand+Meera+Kawga+Chamla+Buner">📍 Google Map Pe Location Dekhen</a>
 </div>
+<script>
+function mySearch() {
+  var input = document.getElementById("search");
+  var filter = input.value.toUpperCase();
+  var table = document.getElementById("myTable");
+  var tr = table.getElementsByTagName("tr");
+  for (var i = 0; i < tr.length; i++) {
+    var td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      var txt = td.textContent || td.innerText;
+      if (txt.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
 </body>
 </html>
